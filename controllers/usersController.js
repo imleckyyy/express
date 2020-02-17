@@ -4,7 +4,7 @@ import { Op } from 'sequelize';
 export default {
     async findOne(req, res, next) {
         const user = await User.findOne({ 
-            where: { 
+            where: {
                 id: {
                     [Op.eq]: req.params.id
                 }
@@ -13,7 +13,7 @@ export default {
 
         if(!user) return next();
         
-        return res.status(200).send({
+        return res.status(200).json({
             data: user
         });
     },
@@ -21,12 +21,8 @@ export default {
     async findAll(req, res) {
         const users = await User.findAll();
 
-        return res.status(200).send({
+        return res.status(200).json({
             data: users
         });
-    },
-
-    async create(req, res) {
-
     }
 }
